@@ -3,7 +3,7 @@
 ## 一，概述 {#一，概述}
 
 java动态代理只能对方法进行反射，为什么？  
-[![](http://sqtds.github.io/img/2015/%E5%8F%8D%E5%B0%84.png)](http://sqtds.github.io/img/2015/%E5%8F%8D%E5%B0%84.png)
+[![](http://sqtds.github.io/img/2015/反射.png)](http://sqtds.github.io/img/2015/反射.png)
 
 ## 二，Class {#二，Class}
 
@@ -21,27 +21,24 @@ getDeclaredXXX\(\)返回的为本类的所有的XXX\(方法，构造方法，属
 
 ### 2,Constructors {#2,Constructors}
 
-* public Constructor
-  getConstructor\(Class
-  &lt;
-  ?
-  &gt;
-  … parameterTypes\)
- 
+* `public Constructor getConstructor(Class<?>… parameterTypes)`
+
   根据参数返回公共构造方法。
-* public Constructor
-  &lt;
-  ?
-  &gt;
+
+* public Constructor  
+  &lt;  
+  ?  
+  &gt;  
   \[\] getConstructors\(\)
- 
+
   得到所有的公共构造方法
-* public Constructor
-  &lt;
-  ?
-  &gt;
+
+* public Constructor  
+  &lt;  
+  ?  
+  &gt;  
   \[\] getDeclaredConstructors\(\)
- 
+
   得到声明的构造方法
 
 ### 3,Fields {#3,Fields}
@@ -140,23 +137,19 @@ int
 Modifier.isVolatile(
 int
  modifiers)
-
 ```
 
 ## 六.InvocationHandler {#六-InvocationHandler}
 
-| 1 2 3 4 5 6 7 8  | Proxy publicstatic Object newProxyInstance\(ClassLoader loader, 				  Class&lt;?&gt;\[\] interfaces, 				  InvocationHandler h\) 上述方法与下面的方法 完全等同，都是构造一个代理实例。 Proxy.getProxyClass\(loader, interfaces\). getConstructor\(new Class\[\] { InvocationHandler.class }\). newInstance\(new Object\[\] { handler }\);  |
+| 1 2 3 4 5 6 7 8 | Proxy publicstatic Object newProxyInstance\(ClassLoader loader,                   Class&lt;?&gt;\[\] interfaces,                   InvocationHandler h\) 上述方法与下面的方法 完全等同，都是构造一个代理实例。 Proxy.getProxyClass\(loader, interfaces\). getConstructor\(new Class\[\] { InvocationHandler.class }\). newInstance\(new Object\[\] { handler }\); |
 | :--- | :--- |
 
 
 从这里可以看出，任何一个代理类都会有一个以InvocationHandler为参数的构造方法，通过这个方法，我们可以创建一个代理类。  
-然后我们看看InvocationHandler的接口实现：  
+然后我们看看InvocationHandler的接口实现：
 
-
-| 1  | public Object invoke\(Object proxy, Method method, Object\[\] args\)  |
+| 1 | public Object invoke\(Object proxy, Method method, Object\[\] args\) |
 | :--- | :--- |
-
-
 
 
 从这里看出，参数仅仅能传Method，所以只能对方法进行代理。
@@ -182,7 +175,6 @@ class
 , 
 3
 );
-
 ```
 
 创建一个大小为3，类型为int的数组。
@@ -198,7 +190,6 @@ set
 , 
 123
 );
-
 ```
 
 设置数组的第一个值为123。
@@ -226,7 +217,6 @@ Class
 .forName(
 "[Ljava.lang.String;"
 );
-
 ```
 
 ## 八，jdk8改进 {#八，jdk8改进}
@@ -241,7 +231,4 @@ Person getEmployee\(@PathParam Long dept, @QueryParam Long id\)
 ## 九，参考资料 {#九，参考资料}
 
 [Java Reflection Tutorial](http://tutorials.jenkov.com/java-reflection/index.html)
-
-  
-
 
