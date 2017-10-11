@@ -25,19 +25,11 @@ getDeclaredXXX\(\)返回的为本类的所有的XXX\(方法，构造方法，属
 
   根据参数返回公共构造方法。
 
-* public Constructor  
-  &lt;  
-  ?  
-  &gt;  
-  \[\] getConstructors\(\)
+* `public Constructor<?>[] getConstructors()`
 
   得到所有的公共构造方法
 
-* public Constructor  
-  &lt;  
-  ?  
-  &gt;  
-  \[\] getDeclaredConstructors\(\)
+* `public Constructor<?>[] getDeclaredConstructors()`
 
   得到声明的构造方法
 
@@ -64,93 +56,48 @@ getDeclaredXXX\(\)返回的为本类的所有的XXX\(方法，构造方法，属
 
 我们可以看到修饰符使用的是二进制来表示的，访问修饰符用01,10,100，1000来表示的，总共容纳32个修饰符，每一位使用mod&修饰符来判断当前值是否包含修饰符。
 
-```
-public
-static
-final
-int
-PUBLIC
-           = 
-0
-x00000001;
+```java
+public static final int PUBLIC = 0x00000001;
 
-public
-static
-final
-int
-PRIVATE
-          = 
-0
-x00000002;
+public static final int PRIVATE   = 0x00000002;
 
-public
-static
-final
-int
-PROTECTED
-        = 
-0
-x00000004;
+public static final int PROTECTED       = 0x00000004;
 
-public
-static
-final
-int
-STATIC
-           = 
-0
-x00000008;
+public static final int STATIC        = 0x00000008;
 ...
-Modifier.isAbstract(
-int
- modifiers)
-Modifier.isFinal(
-int
- modifiers)
-Modifier.isInterface(
-int
- modifiers)
-Modifier.isNative(
-int
- modifiers)
-Modifier.isPrivate(
-int
- modifiers)
-Modifier.isProtected(
-int
- modifiers)
-Modifier.isPublic(
-int
- modifiers)
-Modifier.isStatic(
-int
- modifiers)
-Modifier.isStrict(
-int
- modifiers)
-Modifier.isSynchronized(
-int
- modifiers)
-Modifier.isTransient(
-int
- modifiers)
-Modifier.isVolatile(
-int
- modifiers)
+Modifier.isAbstract( int modifiers)
+Modifier.isFinal(int modifiers)
+Modifier.isInterface( int modifiers)
+Modifier.isNative( int modifiers)
+Modifier.isPrivate(int modifiers)
+Modifier.isProtected(int modifiers)
+Modifier.isPublic(int modifiers)
+Modifier.isStatic( int modifiers)
+Modifier.isStrict( int modifiers)
+Modifier.isSynchronized( int modifiers)
+Modifier.isTransient(int modifiers)
+Modifier.isVolatile(int modifiers)
 ```
 
 ## 六.InvocationHandler {#六-InvocationHandler}
 
-| 1 2 3 4 5 6 7 8 | Proxy publicstatic Object newProxyInstance\(ClassLoader loader,                   Class&lt;?&gt;\[\] interfaces,                   InvocationHandler h\) 上述方法与下面的方法 完全等同，都是构造一个代理实例。 Proxy.getProxyClass\(loader, interfaces\). getConstructor\(new Class\[\] { InvocationHandler.class }\). newInstance\(new Object\[\] { handler }\); |
-| :--- | :--- |
-
+```java
+Proxy
+public static Object newProxyInstance(ClassLoader loader,
+				  Class<?>[] interfaces,
+				  InvocationHandler h)
+上述方法与下面的方法 完全等同，都是构造一个代理实例。
+Proxy.getProxyClass(loader, interfaces).
+              getConstructor(new Class[] { InvocationHandler.class }).
+              newInstance(new Object[] { handler });
+```
 
 从这里可以看出，任何一个代理类都会有一个以InvocationHandler为参数的构造方法，通过这个方法，我们可以创建一个代理类。  
 然后我们看看InvocationHandler的接口实现：
 
-| 1 | public Object invoke\(Object proxy, Method method, Object\[\] args\) |
-| :--- | :--- |
-
+```java
+public Object invoke(Object proxy, Method method, Object[] args)
+```
 
 从这里看出，参数仅仅能传Method，所以只能对方法进行代理。
 
@@ -161,20 +108,7 @@ int
 ### 1，创建数组 {#1，创建数组}
 
 ```
-int
-[]
- intArray = (
-int
-[]
-) 
-Array
-.newInstance(
-int
-.
-class
-, 
-3
-);
+int[] intArray = (int[]) Array.newInstance(int.class, 3);
 ```
 
 创建一个大小为3，类型为int的数组。
@@ -182,14 +116,7 @@ class
 ### 2，访问数组 {#2，访问数组}
 
 ```
-Array
-.
-set
-(intArray, 
-0
-, 
-123
-);
+Array.set(intArray, 0, 123);
 ```
 
 设置数组的第一个值为123。
@@ -197,26 +124,11 @@ set
 ### 3，从数组中获取类对象 {#3，从数组中获取类对象}
 
 ```
-Class
- stringArrayClass = 
-String
-[].
-class
-;
+Class  stringArrayClass = String[].class;
 
-Class
- intArray = 
-Class
-.forName(
-"[I"
-);
+Class intArray = Class.forName("[I");
 
-Class
- stringArrayClass = 
-Class
-.forName(
-"[Ljava.lang.String;"
-);
+Class stringArrayClass = Class.forName("[Ljava.lang.String;");
 ```
 
 ## 八，jdk8改进 {#八，jdk8改进}
