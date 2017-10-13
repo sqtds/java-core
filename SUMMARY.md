@@ -7,4 +7,6 @@
 * [java核心系列（四）](javahe-xin-xi-lie-ff08-si-ff09.md)
 * [java核心系列（五）](javahe-xin-xi-lie-ff08-wu-ff09.md)
 * [java核心系列（六）](javahe-xin-xi-lie-ff08-liu-ff09.md)
+* [java核心系列（七）](javahe-xin-xi-lie-ff08-qi-ff09.md)
+* [java核心系列（八）](javahe-xin-xi-lie-ff08-ba-ff09.md)
 
