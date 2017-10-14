@@ -2,7 +2,7 @@
 
 ## 并发编程概览 {#并发编程概览}
 
-[![](http://sqtds.github.io/img/2015/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B.png)](http://sqtds.github.io/img/2015/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B.png)
+[![](http://sqtds.github.io/img/2015/并发编程.png)](http://sqtds.github.io/img/2015/并发编程.png)
 
 ### 1,容器 {#1,容器}
 
